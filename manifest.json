@@ -1,0 +1,27 @@
+{
+  "name": "Send-Data-USB",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "This extension scraps data from website and send data to USB com port",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "scripts": [
+      "src/bg/background.js"
+    ],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_icon": "icons/icon19.png",
+    "default_title": "browser action demo",
+    "default_popup": "src/popup/popup.html"
+  },
+  "permissions": [
+    "https://rms-webscan.com/*"
+  ],
+  "content_security_policy": "script-src 'self' https://ajax.googleapis.com https://maxcdn.bootstrapcdn.com; object-src 'self'"
+}
