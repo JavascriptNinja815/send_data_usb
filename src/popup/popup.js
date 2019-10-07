@@ -2,9 +2,23 @@ $(document).ready(function () {
   $('[data-toggle="tooltip"]').tooltip();
   var actions = $("table td:last-child").html();
   // Append table with add row form on add new button click
-  $(".add-new").click(function () {
+  $("#position-add").click(function () {
     $(this).attr("disabled", "disabled");
-    var index = $("table tbody tr:last-child").index();
+    var index = $("#position-table table tbody tr:last-child").index();
+    var row = '<tr>' +
+      '<td>' + (index + 2) + '</td>' +
+      '<td><input type="text" class="form-control" name="code"></td>' +
+      '<td><select><select></td>' +
+      '<td>' + actions + '</td>' +
+      '</tr>';
+    $("#position-table table").append(row);
+    $("#position-table table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+
+  $("#catch-all-add").click(function () {
+    $(this).attr("disabled", "disabled");
+    var index = $("#catch-all-table table tbody tr:last-child").index();
     var row = '<tr>' +
       '<td><input type="text" class="form-control" name="name" id="name"></td>' +
       '<td><input type="text" class="form-control" name="department" id="department"></td>' +
@@ -15,6 +29,8 @@ $(document).ready(function () {
     $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
     $('[data-toggle="tooltip"]').tooltip();
   });
+
+
   // Add row on add button click
   $(document).on("click", ".add", function () {
     var empty = false;

@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bootstrap Table with Add and Delete Row Feature</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -17,18 +16,21 @@
 			color: #404E67;
 			background: #F5F7FA;
 			font-family: 'Open Sans', sans-serif;
-			width: 800px;
-			height: 400px;
+			width: 645px;
 		}
 
 		.container {
 			display: flex;
+			padding: 0px;
+		}
+
+		.table {
+			margin-bottom: 5px;
 		}
 
 		.table-wrapper {
-			margin: 30px auto;
 			background: #fff;
-			padding: 20px;
+			padding: 5px;
 		}
 
 		.table-title {
@@ -56,10 +58,6 @@
 			margin-right: 4px;
 		}
 
-		table.table {
-			table-layout: fixed;
-		}
-
 		table.table tr th,
 		table.table tr td {
 			border-color: #e9e9e9;
@@ -71,10 +69,6 @@
 			font-size: 13px;
 			margin: 0 5px;
 			cursor: pointer;
-		}
-
-		table.table th:last-child {
-			width: 100px;
 		}
 
 		table.table td a {
@@ -127,7 +121,7 @@
 		}
 
 		.table-body {
-			height: 350px;
+			height: 280px;
 			overflow: auto;
 		}
 
@@ -135,10 +129,8 @@
 			text-align: center;
 		}
 
-		.com-wrapper {
-			margin: 30px auto;
-			background: #fff;
-			padding: 20px;
+		.actions-width {
+			width: 75px;
 		}
 	</style>
 	<script type="text/javascript" src="popup.js"></script>
@@ -146,18 +138,18 @@
 
 <body>
 	<div class="container">
-		<div id="position" class="table-wrapper">
+		<div class="table-wrapper">
 			<div class="title">
 				<h3>Positions</h3>
 			</div>
-			<div class="table-body">
+			<div id="position-table" class="table-body">
 				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th style="width: 60px;">Position</th>
 							<th>Match Code</th>
 							<th>Color</th>
-							<th style="width: 80px;">Actions</th>
+							<th class="actions-width">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -354,21 +346,22 @@
 				</table>
 			</div>
 			<div class="button">
-				<button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New </button>
+				<button id="position-add" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New
+				</button>
 			</div>
 		</div>
 
-		<div id="catch-all" class="table-wrapper">
+		<div class="table-wrapper">
 			<div class="title">
 				<h3>Catch All</h3>
 			</div>
-			<div class="table-body">
+			<div id="catch-all-table" class="table-body">
 				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th>Match Code</th>
 							<th>Color</th>
-							<th>Actions</th>
+							<th class="actions-width">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -464,24 +457,31 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="button">
+				<button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New </button>
+			</div>
 		</div>
 
-		<div id="com" class="com-wrapper">
+		<div id="com" class="table-wrapper">
 			<div class="title">
 				<h3>COM Port</h3>
 			</div>
 			<div class="table-body">
-				<table class="table">
+				<table id="com-table" class="table">
 					<tbody>
 						<tr>
 							<td>
-								<select>
+								<select style="width: 100px;">
 									<option value="com1">COM1</option>
 								</select>
 							</td>
 						</tr>
 					</tbody>
 				</table>
+			</div>
+			<div class="button">
+				<button id="com-refresh" type="button" class="btn btn-info refresh"><i class="fa fa-refresh"></i> Refresh
+				</button>
 			</div>
 		</div>
 	</div>
