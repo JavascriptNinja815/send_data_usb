@@ -1,6 +1,10 @@
 $(document).ready(function () {
   $('[data-toggle="tooltip"]').tooltip();
   var positionActions = $("#position-table table td:last-child").html();
+  // Display Delete Button In Last Row
+  var lastIndex = $("#position-table table tbody tr:last-child").index();
+  $("#position-table table tbody tr").eq(lastIndex).find(".delete-position").css("display", "inline-block");
+  
   var catchAllActions = $("#catch-all-table table td:last-child").html();
   // Append table with add row form on add new button click
   $("#add-position-btn").click(function () {
@@ -14,7 +18,9 @@ $(document).ready(function () {
       '</tr>';
     $("#position-table table").append(row);
     $("#position-table").scrollTop(index * 30);
+    $("#position-table table tbody tr").eq(index).find(".delete-position").css("display", "none");
     $("#position-table table tbody tr").eq(index + 1).find(".add-position, .edit-position").toggle();
+    $("#position-table table tbody tr").eq(index + 1).find(".delete-position").css("display", "inline-block");
     $('[data-toggle="tooltip"]').tooltip();
   });
 
@@ -28,7 +34,6 @@ $(document).ready(function () {
       '</tr>';
     $("#catch-all-table table").append(row);
     $("#catch-all-table").scrollTop(index * 30);
-    console.log(index);
     $("#catch-all-table table tbody tr").eq(index + 1).find(".add-catch-all, .edit-catch-all").toggle();
     $('[data-toggle="tooltip"]').tooltip();
   });
@@ -102,6 +107,8 @@ $(document).ready(function () {
   // Delete row on delete button click
   $(document).on("click", ".delete-position", function () {
     $(this).parents("tr").remove();
+    var index = $("#position-table table tbody tr:last-child").index();
+    $("#position-table table tbody tr").eq(index).find(".delete-position").css("display", "inline-block");
     $("#add-position-btn").removeAttr("disabled");
   });
 
