@@ -13,15 +13,26 @@
     "scripts": [
       "src/bg/background.js"
     ],
-    "persistent": true
+    "persistent": false
   },
   "browser_action": {
     "default_icon": "icons/icon19.png",
     "default_title": "send_data_usb",
     "default_popup": "src/popup/popup.html"
   },
+  "content_scripts": [{
+    "matches": ["https://rms-webscan.com/*"],
+    "js": [
+      "js/jquery.min.js",
+      "src/content/content.js"
+    ],
+    "all_frames": true,
+    "run_at": "document_end"
+    }
+  ],
   "permissions": [
-    "https://rms-webscan.com/*"
+    "https://rms-webscan.com/",
+    "tabs"
   ],
   "content_security_policy": "script-src 'self' https://ajax.googleapis.com https://maxcdn.bootstrapcdn.com; object-src 'self'"
 }
