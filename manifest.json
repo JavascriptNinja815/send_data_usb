@@ -1,5 +1,5 @@
 {
-  "name": "Send-Data-USB",
+  "name": "Send-Data-To-App",
   "version": "0.0.1",
   "manifest_version": 2,
   "description": "This extension scraps data from website and send data to USB com port",
@@ -32,7 +32,8 @@
   ],
   "permissions": [
     "https://rms-webscan.com/",
-    "tabs"
+    "tabs",
+    "storage"
   ],
   "content_security_policy": "script-src 'self' https://ajax.googleapis.com https://maxcdn.bootstrapcdn.com; object-src 'self'"
 }

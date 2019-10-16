@@ -1,9 +1,13 @@
 $(document).ready(function () {
-  // prompt.p
+  // Conect Background using Port
+  var port = chrome.runtime.connect({
+    name: 'scrape_data'
+  });
+  
   $('#p_upc').keypress(function (event) {
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if (keycode == '13') {
-      setTimeout(function() {
+      setTimeout(function () {
         if (window.frames["main"]) {
           var code = window.frames["main"].frames["middle"].document.getElementById("iFrame").contentWindow.document.getElementById("thesort").innerText;
         } else if (window.frames["middle"]) {
@@ -13,7 +17,10 @@ $(document).ready(function () {
         } else {
           var code = document.getElementById("thesort").innerText;
         }
-        console.log('found code', code);
+        port.postMessage({
+          type: 'scrapedData',
+          data: code
+        })
       }, 3000)
     }
   });

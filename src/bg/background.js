@@ -1,13 +1,27 @@
-// if you checked "fancy-settings" in extensionizr.com, uncomment this lines
+var config = {};
+var appId = 'olpcjckpjnknikpdhaioojokhdilkpfi';
 
-// var settings = new Store("settings", {
-//     "sample_setting": "This is how you use Store.js to remember values"
+function getCode(string) {
+  return string;
+}
+
+chrome.runtime.onConnect.addListener(function (port) {
+  console.assert(port.name == 'scrape_data');
+  port.onMessage.addListener(function (msg) {
+    if (msg.type = 'scrapedData') {
+      var code = getCode(msg.data);
+      var externalPort = chrome.runtime.connect(appId);
+      externalPort.postMessage({
+        type: 'from extension',
+        port: 'COM1',
+        data: code
+      });
+    }
+  })
+})
+
+// chrome.runtime.onConnectExternal.addListener(function(port) {
+//   port.onMessage.addListener(function(msg) {
+//     // See other examples for sample onMessage handlers.
+//   });
 // });
-
-
-//example of using a message handler from the inject scripts
-chrome.extension.onMessage.addListener(
-  function(request, sender, sendResponse) {
-  	chrome.pageAction.show(sender.tab.id);
-    sendResponse();
-  });
